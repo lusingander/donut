@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io"
 	"log"
 	"os"
@@ -13,14 +12,12 @@ func run() error {
 		return err
 	}
 
-	pages := readPages(string(bytes))
-
-	fmt.Printf("total: %d, w: %d, h: %d\n", len(pages.ps), pages.width, pages.height)
-	for _, p := range pages.ps {
-		p.print()
+	pages, err := readPages(string(bytes))
+	if err != nil {
+		return err
 	}
 
-	return nil
+	return start(pages)
 }
 
 func main() {

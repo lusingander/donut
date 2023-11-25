@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"errors"
 	"strings"
 )
 
@@ -20,14 +20,7 @@ type page struct {
 	lines  []string
 }
 
-func (p *page) print() {
-	fmt.Printf("[page: %d]\n", p.number)
-	for _, line := range p.lines {
-		fmt.Printf("%s\n", line)
-	}
-}
-
-func readPages(s string) *pages {
+func readPages(s string) (*pages, error) {
 	ss := strings.Split(s, "\n")
 	ps := make([]*page, 0)
 
@@ -58,5 +51,9 @@ func readPages(s string) *pages {
 		}
 	}
 
-	return &pages{ps: ps, width: w, height: h}
+	if len(ps) == 0 {
+		return nil, errors.New("invalid input")
+	}
+
+	return &pages{ps: ps, width: w, height: h}, nil
 }
