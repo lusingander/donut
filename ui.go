@@ -149,5 +149,6 @@ func digit(n uint) uint {
 func start(pages *pages) error {
 	m := newModel(pages)
 	p := tea.NewProgram(m, tea.WithAltScreen())
-	return p.Start()
+	_, err := p.Run()
+	return err
 }
