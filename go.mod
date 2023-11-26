@@ -2,7 +2,10 @@ module github.com/lusingander/donut
 
 go 1.21.3
 
-require github.com/charmbracelet/bubbletea v0.24.2
+require (
+	github.com/charmbracelet/bubbletea v0.24.2
+	github.com/charmbracelet/lipgloss v0.9.1
+)
 
 require (
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
