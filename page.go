@@ -3,6 +3,8 @@ package main
 import (
 	"errors"
 	"strings"
+
+	"github.com/mattn/go-runewidth"
 )
 
 const (
@@ -43,7 +45,7 @@ func readPages(s string) (*pages, error) {
 			n += 1
 			ls = make([]string, 0)
 		} else {
-			ww := len(s)
+			ww := runewidth.StringWidth(s)
 			if w < ww {
 				w = ww
 			}
